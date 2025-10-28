@@ -30,7 +30,9 @@ jobs:
         run: npm ci
 
       - name: Build web
-        run: npx expo export -p web --base-url "/${{ github.event.repository.name }}/"
+        run: |
+          export EXPO_PUBLIC_BASE_URL="/${{ github.event.repository.name }}/"
+          npm run build:web
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
